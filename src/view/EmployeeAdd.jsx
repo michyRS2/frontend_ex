@@ -11,8 +11,23 @@ const EmployeeAdd = () => {
   const [campAddress, setcampAddress] = useState("");
   const [stringRole, setstringRole] = useState("");
   const [selectRole, setselectRole] = useState("");
+  const [roles, setRoles] = useState([]);
   const navigate = useNavigate(); // hook para navegação
 
+  useEffect(() => {
+    axios
+      .get("https://backend-ex-0yg7.onrender.com/roles/list")
+      .then((response) => {
+        if (response.data.success) {
+          setRoles(response.data.data);
+        } else {
+          alert("Erro ao buscar roles");
+        }
+      })
+      .catch((error) => {
+        alert("Erro ao buscar roles: " + error);
+      });
+  }, []);
 
   return (
     <div>
@@ -49,7 +64,7 @@ const EmployeeAdd = () => {
           Role
         </label>
         <div className="col-sm-10">
-          <select
+          {/*<select
             id="inputState"
             className="form-control"
             onChange={(value) => setselectRole(value.target.value)}
@@ -58,6 +73,18 @@ const EmployeeAdd = () => {
             <option value="1">Admin...</option>
             <option value="2">Project Manager</option>
             <option value="3">Programer</option>
+          </select>*/}
+          <select
+            id="inputState"
+            className="form-control"
+            onChange={(value) => setselectRole(value.target.value)}
+          >
+            <option defaultValue="">Escolher...</option>
+            {roles.map((role) => (
+              <option key={role.id} value={role.id}>
+                {role.role}
+              </option>
+            ))}
           </select>
         </div>
       </div>
@@ -114,9 +141,9 @@ const EmployeeAdd = () => {
       .then((response) => {
         if (response.data.success === true) {
           alert(response.data.message);
-          navigate('/');//apos confirmar mensagem navega para a rota principal
+          navigate("/"); //apos confirmar mensagem navega para a rota principal
         } else {
-          alert("Erro ao registar: "+ response.data.message);
+          alert("Erro ao registar: " + response.data.message);
         }
       })
       .catch((error) => {
