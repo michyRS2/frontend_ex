@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useParams,useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const baseUrl = "http://localhost:3000";
+const baseUrl = "https://backend-ex-0yg7.onrender.com";
 
 const EmployeeEdit = () => {
   const [dataEmployee, setdataEmployee] = useState("");

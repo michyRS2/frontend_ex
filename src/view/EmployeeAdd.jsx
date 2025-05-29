@@ -101,7 +101,7 @@ const EmployeeAdd = () => {
   );
   function SendSave(e) {
     e.preventDefault();
-    const baseUrl = "http://localhost:3000/employee/create";
+    const baseUrl = "https://backend-ex-0yg7.onrender.com/employee/create";
     const datapost = {
       name: campName,
       email: campEmail,

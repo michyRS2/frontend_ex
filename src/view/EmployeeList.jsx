@@ -6,14 +6,14 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
 
-const urlAPI = "http://localhost:3000/employee/list";
+const urlAPI = "https://backend-ex-0yg7.onrender.com/employee/list";
 const EmployeeList = () => {
   const [dataEmployee, setdataEmployee] = useState([]);
   useEffect(() => {
     LoadEmployee();
   }, []);
   function LoadEmployee() {
-    const url = "http://localhost:3000/employee/list";
+    const url = "https://backend-ex-0yg7.onrender.com/employee/list";
     axios
       .get(url)
       .then((res) => {
@@ -48,7 +48,7 @@ const EmployeeList = () => {
 }
 function SendDelete(userId) {
   // url do backend
-  const baseUrl = "http://localhost:3000/employee/delete";
+  const baseUrl = "https://backend-ex-0yg7.onrender.com/employee/delete";
   // network
   axios
     .post(baseUrl, {
